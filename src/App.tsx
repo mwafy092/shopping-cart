@@ -31,6 +31,9 @@ const App = () => {
         getProducts
     );
     console.log('data ', data);
+    const getTotalItems = () => null;
+    const handleAddToCart = () => null;
+    const handleRemoveFromCart = () => null;
 
     if (isLoading) return <CircularProgress />;
     if (error) return <div>Something is going wrong...</div>;
