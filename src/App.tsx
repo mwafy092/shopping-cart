@@ -37,7 +37,21 @@ const App = () => {
     const getTotalItems = (items: CartItemsTypes[]) =>
         items.reduce((ac: number, item) => ac + item.amount, 0);
 
-    const handleAddToCart = () => null;
+    const handleAddToCart = (clickedItem: CartItemsTypes) => {
+        setCartItems((prev) => {
+            const isItemInCart = prev.find(
+                (item) => item.id === clickedItem.id
+            );
+            if (isItemInCart) {
+                return prev.map((item) =>
+                    item.id === clickedItem.id
+                        ? { ...item, amount: item.amount + 1 }
+                        : item
+                );
+            }
+            return [...prev, { ...clickedItem, amount: 1 }];
+        });
+    };
     const handleRemoveFromCart = () => null;
 
     if (isLoading) return <CircularProgress />;
