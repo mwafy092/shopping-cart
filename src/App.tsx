@@ -52,7 +52,7 @@ const App = () => {
             return [...prev, { ...clickedItem, amount: 1 }];
         });
     };
-    const handleRemoveFromCart = () => null;
+    const handleRemoveFromCart = (id: number) => {};
 
     if (isLoading) return <CircularProgress />;
     if (error) return <div>Something is going wrong...</div>;
