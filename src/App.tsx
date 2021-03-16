@@ -5,7 +5,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Grid from '@material-ui/core/Grid';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import Badge from '@material-ui/core/Badge';
-import { Wrapper } from './App.styles';
+import { Wrapper, StyledButton } from './App.styles';
 import Item from './components/Item';
 
 // type interface
@@ -32,7 +32,7 @@ const App = () => {
         'products',
         getProducts
     );
-    const getTotalItems = () => null;
+    const getTotalItems = (items: CartItemsTypes[]) => null;
     const handleAddToCart = () => null;
     const handleRemoveFromCart = () => null;
 
@@ -43,7 +43,14 @@ const App = () => {
             <Drawer
                 anchor='right'
                 open={cartOpen}
-                onClose={() => setCartOpen(false)}></Drawer>
+                onClose={() => setCartOpen(false)}>
+                Cart is going here
+            </Drawer>
+            <StyledButton onClick={() => setCartOpen(true)}>
+                <Badge badgeContent={getTotalItems(cartItems)} color='error'>
+                    <AddShoppingCartIcon />
+                </Badge>
+            </StyledButton>
             <Grid container spacing={4}>
                 {data?.map((item) => (
                     <Grid item key={item.id} xs={12} sm={6} lg={4}>
