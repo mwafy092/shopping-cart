@@ -7,7 +7,7 @@ import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import Badge from '@material-ui/core/Badge';
 import { Wrapper } from './App.styles';
 // components
-
+import Item from './Item/Item';
 // type interface
 export type CartItemsTypes = {
     id: number;
@@ -30,7 +30,6 @@ const App = () => {
         'products',
         getProducts
     );
-    console.log('data ', data);
     const getTotalItems = () => null;
     const handleAddToCart = () => null;
     const handleRemoveFromCart = () => null;
@@ -38,9 +37,15 @@ const App = () => {
     if (isLoading) return <CircularProgress />;
     if (error) return <div>Something is going wrong...</div>;
     return (
-        <div className='App'>
-            <h1>hello</h1>
-        </div>
+        <Wrapper>
+            <Grid container spacing={4}>
+                {data?.map((item) => (
+                    <Grid item key={item.id} xs={12} sm={4}>
+                        <Item item={item} handleAddToCart={handleAddToCart} />
+                    </Grid>
+                ))}
+            </Grid>
+        </Wrapper>
     );
 };
 
