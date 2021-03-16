@@ -32,7 +32,11 @@ const App = () => {
         'products',
         getProducts
     );
-    const getTotalItems = (items: CartItemsTypes[]) => null;
+
+    // get total items function using reducer
+    const getTotalItems = (items: CartItemsTypes[]) =>
+        items.reduce((ac: number, item) => ac + item.amount, 0);
+
     const handleAddToCart = () => null;
     const handleRemoveFromCart = () => null;
 
