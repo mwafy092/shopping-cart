@@ -52,7 +52,18 @@ const App = () => {
             return [...prev, { ...clickedItem, amount: 1 }];
         });
     };
-    const handleRemoveFromCart = (id: number) => {};
+    const handleRemoveFromCart = (id: number) => {
+        setCartItems((prev) =>
+            prev.reduce((ac, item) => {
+                if (item.id === id) {
+                    if (item.amount === 1) return ac;
+                    return [...ac, { ...item, amount: item.amount - 1 }];
+                } else {
+                    return [...ac, item];
+                }
+            }, [] as CartItemsTypes[])
+        );
+    };
 
     if (isLoading) return <CircularProgress />;
     if (error) return <div>Something is going wrong...</div>;
